@@ -8,6 +8,8 @@ create table IF NOT EXISTS cards (
     primary key(id)
 ) Engine=InnoDB;
 
+insert into cards values(1,'ditto'),(2,'Bulbasur');
+
 create table IF NOT EXISTS decks(
     id int unsigned not null auto_increment,
     created_at datetime not null,

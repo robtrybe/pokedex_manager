@@ -1,3 +1,3 @@
 const server = require('./app');
 
-server.listen(3000, () => 'Redando na porta 3000');
+server.listen(3000, () => 'Rodando na porta 3000');

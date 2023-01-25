@@ -12,8 +12,9 @@ const findById = async (id) => {
     return response;
 }
 
-const destroy = (id) => {
-
+const destroy = async (id) => {
+    const response = await connection.execute('delete from cards where id = ?', [id]);
+    return response;
 }
 
 const create = (card) => {

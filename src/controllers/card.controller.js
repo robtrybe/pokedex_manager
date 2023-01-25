@@ -5,8 +5,11 @@ const getAllCards = async (req, res) => {
     res.status(200).json(result);
 };
 
-const createCard = async (req, res) => res.status(200).json(req.body);
-
+const createCard = async (req, res) => {
+    const data = { ...req.body };
+    const insertId = await cardModel.create(data); 
+    res.status(200).json({ insertId });
+}
 
 const getCardsById = async (req, res) => {
     const { id } = req.params;

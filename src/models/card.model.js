@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const findAll = async () => {
-    const response = await connection.execute('select * from cards');
+    const [ response ] = await connection.execute('select * from cards');
     return response;
 }
 
@@ -13,7 +13,7 @@ const findById = async (id) => {
 }
 
 const destroy = async (id) => {
-    const response = await connection.execute('delete from cards where id = ?', [id]);
+    const [ { affectedRows } ] = await connection.execute('delete from cards where id = ?', [id]);
     return response;
 }
 
@@ -26,8 +26,12 @@ const create = async (card) => {
     return insertId;
 }
 
-const update = (data, id)=> {
-
+const update = async ( card, id ) => {
+    const columns = Object.keys(card);
+    const setColumns = columns.map((column) => `${column} = ?`).join(', ')
+    const sql = `update cards set ${setColumns} where id = ?`;
+    const [ { affectedRows }] = await connection.execute(sql, [...Object.values(card), id]);
+    return affectedRows;
 }
 
 module.exports = {

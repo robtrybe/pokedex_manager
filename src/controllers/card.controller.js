@@ -23,9 +23,17 @@ const removeCard = async (req, res) => {
     res.status(200).json({ affectedRows });
 }
 
+const updateCard = async (req, res) => {
+   const { id } = req.params;
+   const data = {...req.body };
+   const affectedRows = await cardModel.update(data, id);
+   res.status(200).json({ affectedRows });
+}
+
 module.exports = {
     getAllCards,
     createCard,
     getCardsById,
     removeCard,
+    updateCard,
 }

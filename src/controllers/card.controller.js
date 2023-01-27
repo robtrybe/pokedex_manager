@@ -1,7 +1,7 @@
 const { cardModel } = require('../models');
 
 const getAllCards = async (req, res) => {
-    const [ result ] = await cardModel.findAll(); 
+    const result = await cardModel.findAll(); 
     res.status(200).json(result);
 };
 

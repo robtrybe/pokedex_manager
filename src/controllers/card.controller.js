@@ -1,6 +1,7 @@
-const { cardModel } = require('../models');
+const { cardModel, deckCardModel } = require('../models');
 
 const getAllCards = async (req, res) => {
+    await deckCardModel.create({ deckId:1, cardId:1, quantity:1});
     const result = await cardModel.findAll(); 
     res.status(200).json(result);
 };

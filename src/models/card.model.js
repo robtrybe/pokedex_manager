@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const findAll = async () => {
-    const response = await connection.execute('select * from cards');
+    const [ response ] = await connection.execute('select * from cards');
     return response;
 }
 
